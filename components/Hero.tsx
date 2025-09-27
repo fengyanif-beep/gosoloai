@@ -22,7 +22,7 @@ const Hero: React.FC<HeroProps> = ({ onSignupClick }) => {
       <img
         src="https://i.imgur.com/Ck8fsiQ.png"
         alt="GoSoloAI Logo"
-        className="mx-auto h-14 w-auto mb-6 opacity-0 animate-fade-in-up"
+        className="mx-auto h-10 w-auto mb-6 opacity-0 animate-fade-in-up"
         style={{ animationDelay: "0.1s" }}
       />
 
