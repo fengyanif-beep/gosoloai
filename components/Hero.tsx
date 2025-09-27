@@ -5,56 +5,59 @@ interface HeroProps {
   onSignupClick: () => void;
 }
 
-const Hero: React.FC<HeroProps> = ({ onSignupClick }) => {
+export default function Hero({ onSignupClick }: HeroProps) {
   const { t } = useLanguage();
 
   return (
-    <section className="pt-12 pb-16 sm:pt-16 sm:pb-20">
-      <div className="max-w-6xl mx-auto px-4 text-center">
+    <section className="pt-10 pb-14 sm:pt-12 sm:pb-16">
+      <div className="max-w-4xl mx-auto px-4 text-center">
 
         {/* Logo */}
         <img
           src="https://i.imgur.com/Ck8fsiQ.png"
           alt="GoSoloAI Logo"
-          className="mx-auto h-10 w-auto mb-6 opacity-0 animate-fade-in-up"
+          className="mx-auto h-8 w-auto mb-5 opacity-0 animate-fade-in-up"
           style={{ animationDelay: '0.1s' }}
         />
 
         {/* 标题 */}
-        <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-slate-900 to-slate-600 tracking-tight leading-snug opacity-0 animate-fade-in-up mb-4"
-            style={{ animationDelay: '0.2s' }}>
-          {t('hero.title')}
+        <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-slate-900 tracking-tight leading-snug opacity-0 animate-fade-in-up mb-3" style={{ animationDelay: '0.2s' }}>
+          {t('hero.title') || 'Arm lonely fighters to become legendary unicorns'}
         </h1>
 
         {/* 副标题 */}
-        <p className="max-w-3xl mx-auto text-base sm:text-lg text-slate-600 opacity-0 animate-fade-in-up whitespace-pre-wrap mb-6"
-           style={{ animationDelay: '0.4s' }}>
-          {t('hero.subtitle')}
+        <p className="max-w-2xl mx-auto text-sm sm:text-base text-slate-600 opacity-0 animate-fade-in-up mb-5" style={{ animationDelay: '0.4s' }}>
+          {t('hero.subtitle') || "What if your startup’s first year cost nothing? Unlock €30,000+ in founder perks & the best AI tools. Stop paying. Start building."}
         </p>
 
-        {/* 价格区块 */}
-        <div className="space-y-3 opacity-0 animate-fade-in-up" style={{ animationDelay: '0.6s' }}>
-          <div className="bg-yellow-400 text-black font-semibold px-4 py-2 rounded-lg shadow-md inline-block text-sm sm:text-base">
-            Founders Beta: Join now for only €24.99/year
-            <div className="text-xs font-normal">(FIRST 100 MEMBERS ONLY)</div>
+        {/* 价格 & 按钮区块 */}
+        <div className="opacity-0 animate-fade-in-up" style={{ animationDelay: '0.6s' }}>
+          {/* 黄色价格卡片 */}
+          <div className="bg-yellow-400 text-black font-semibold px-3 py-1.5 rounded-md shadow inline-block mb-2 text-xs sm:text-sm">
+            Founders Beta: €24.99/year
+            <span className="block font-normal text-[11px]">(First 100 members only)</span>
           </div>
-          <p className="text-sm text-slate-500">Regular price: €99/year.</p>
-          <div className="flex justify-center gap-3 flex-wrap">
+
+          {/* 灰色小字 */}
+          <p className="text-slate-500 mb-3 text-xs">Regular price: €99/year.</p>
+
+          {/* 按钮区 */}
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-2">
             <button
               onClick={onSignupClick}
-              className="bg-blue-600 text-white px-5 py-2 rounded-lg text-sm sm:text-base font-semibold hover:bg-blue-700 transition"
+              className="bg-blue-600 text-white px-4 py-2 rounded-md font-semibold shadow text-xs sm:text-sm"
             >
-              ⚡ Join now for only €24.99/year
+              ⚡ Join for €24.99/year
             </button>
-            <button className="text-slate-600 text-sm sm:text-base">
+            <a
+              href="#"
+              className="text-slate-600 font-medium text-xs sm:text-sm"
+            >
               Join free (limited access)
-            </button>
+            </a>
           </div>
         </div>
-
       </div>
     </section>
   );
-};
-
-export default Hero;
+}
