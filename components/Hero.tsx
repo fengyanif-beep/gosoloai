@@ -8,7 +8,7 @@ interface HeroProps {
 const Hero: React.FC<HeroProps> = ({ onSignupClick }) => {
   const { t } = useLanguage();
   return (
-    <section className="pt-16 pb-24 sm:pt-20 sm:pb-32">
+   <section className="pt-10 pb-16 sm:pt-14 sm:pb-20">
       <div className="max-w-7xl mx-auto px-4 text-center">
         <div className="relative mx-auto max-w-6xl">
           <div className="absolute -top-12 -left-20 w-48 h-48 bg-blue-500/10 rounded-full filter blur-3xl opacity-50 animate-pulse"></div>
@@ -17,7 +17,7 @@ const Hero: React.FC<HeroProps> = ({ onSignupClick }) => {
           <img 
             src="https://i.imgur.com/Ck8fsiQ.png" 
             alt="GoSoloAI Logo" 
-            className="mx-auto h-12 w-auto mb-10 opacity-0 animate-fade-in-up" 
+            className="mx-auto h-10 w-auto mb-6 opacity-0 animate-fade-in-up" 
             style={{ animationDelay: '0.1s' }} 
           />
 
