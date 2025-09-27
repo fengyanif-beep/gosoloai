@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Solopreneur AI Hub</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            fontFamily: {
+              sans: ['Inter', 'sans-serif'],
+            },
+          },
+        },
+      }
+    </script>
+    <style>
+      html {
+        scroll-behavior: smooth;
+        scroll-padding-top: 5rem; /* Offset for sticky header */
+      }
+      @keyframes aurora {
+        from {
+          background-position: 0% 50%;
+        }
+        to {
+          background-position: 100% 50%;
+        }
+      }
+      .aurora-background {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        z-index: -1;
+        background-image: radial-gradient(at 27% 37%, hsla(220, 98%, 61%, 0.08) 0px, transparent 50%), radial-gradient(at 97% 21%, hsla(210, 98%, 61%, 0.08) 0px, transparent 50%), radial-gradient(at 52% 99%, hsla(230, 98%, 61%, 0.08) 0px, transparent 50%), radial-gradient(at 10% 29%, hsla(256, 96%, 67%, 0.08) 0px, transparent 50%), radial-gradient(at 97% 96%, hsla(190, 60%, 74%, 0.08) 0px, transparent 50%), radial-gradient(at 33% 50%, hsla(240, 67%, 73%, 0.08) 0px, transparent 50%), radial-gradient(at 79% 53%, hsla(225, 68%, 79%, 0.08) 0px, transparent 50%);
+        background-size: 200% 200%;
+        animation: aurora 15s ease-in-out infinite alternate;
+      }
+      @keyframes fade-in-up {
+        from { opacity: 0; transform: translateY(10px); }
+        to { opacity: 1; transform: translateY(0); }
+      }
+      @keyframes fade-in-down {
+        from { opacity: 0; transform: translateY(-10px); }
+        to { opacity: 1; transform: translateY(0); }
+      }
+      .animate-fade-in-up {
+        animation: fade-in-up 0.5s ease-out forwards;
+      }
+      .animate-fade-in-down {
+        animation: fade-in-down 0.3s ease-out forwards;
+      }
+    </style>
+<script type="importmap">
+{
+  "imports": {
+    "react/": "https://aistudiocdn.com/react@^19.1.1/",
+    "react": "https://aistudiocdn.com/react@^19.1.1",
+    "react-dom/": "https://aistudiocdn.com/react-dom@^19.1.1/",
+    "react-dom": "https://aistudiocdn.com/react-dom@^19.1.1",
+    "firebase/app": "https://www.gstatic.com/firebasejs/9.22.0/firebase-app.js",
+    "firebase/auth": "https://www.gstatic.com/firebasejs/9.22.0/firebase-auth.js",
+    "firebase/": "https://aistudiocdn.com/firebase@^12.3.0/"
+  }
+}
+</script>
+<link rel="stylesheet" href="/index.css">
+</head>
+<body class="bg-slate-50 font-sans text-slate-800">
+    <div class="aurora-background"></div>
+    <div id="root"></div>
+    <script type="module" src="/index.tsx"></script>
+</body>
+</html>
