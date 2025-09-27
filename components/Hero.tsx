@@ -21,11 +21,12 @@ const Hero: React.FC<HeroProps> = ({ onSignupClick }) => {
             style={{ animationDelay: '0.1s' }} 
           />
 
-          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-slate-900 to-slate-600 tracking-tight leading-snug opacity-0 animate-fade-in-up mb-6 py-2" style={{ animationDelay: '0.2s' }}>
-            {t('hero.title')}
+          <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-slate-900 to-slate-600 tracking-tight leading-snug opacity-0 animate-fade-in-up mb-6 py-2" style={{ animationDelay: '0.2s' }}>
+           {t('hero.title')}
           </h1>
-          <p className="max-w-4xl mx-auto text-lg sm:text-xl text-slate-600 opacity-0 animate-fade-in-up whitespace-pre-wrap" style={{ animationDelay: '0.4s' }}>
-            {t('hero.subtitle')}
+
+          <p className="max-w-3xl mx-auto text-base sm:text-lg md:text-xl text-slate-600 opacity-0 animate-fade-in-up whitespace-pre-wrap" style={{ animationDelay: '0.4s' }}>
+          {t('hero.subtitle')}
           </p>
 
           <div className="mt-12 space-y-4 opacity-0 animate-fade-in-up" style={{ animationDelay: '0.6s' }}>
