@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useLanguage } from '../context/LanguageContext';
 
 interface HeroProps {
@@ -7,6 +7,8 @@ interface HeroProps {
 
 const Hero: React.FC<HeroProps> = ({ onSignupClick }) => {
   const { t } = useLanguage();
+  const [showModal, setShowModal] = useState(false);
+
   return (
     <section className="pt-12 pb-20 sm:pt-14 sm:pb-24">
       <div className="max-w-7xl mx-auto px-4 text-center">
@@ -27,26 +29,17 @@ const Hero: React.FC<HeroProps> = ({ onSignupClick }) => {
           />
 
           {/* 标题 */}
-          <h1 
-            className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-slate-900 to-slate-600 tracking-tight leading-snug opacity-0 animate-fade-in-up mb-4 py-1" 
-            style={{ animationDelay: '0.2s' }}
-          >
+          <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-slate-900 to-slate-600 tracking-tight leading-snug opacity-0 animate-fade-in-up mb-4 py-1" style={{ animationDelay: '0.2s' }}>
             {t('hero.title')}
           </h1>
 
           {/* 副标题 */}
-          <p 
-            className="max-w-3xl mx-auto text-base sm:text-lg md:text-xl text-slate-600 opacity-0 animate-fade-in-up whitespace-pre-wrap" 
-            style={{ animationDelay: '0.4s' }}
-          >
+          <p className="max-w-3xl mx-auto text-base sm:text-lg md:text-xl text-slate-600 opacity-0 animate-fade-in-up whitespace-pre-wrap" style={{ animationDelay: '0.4s' }}>
             {t('hero.subtitle')}
           </p>
 
           {/* 价格区块 */}
-          <div 
-            className="mt-10 space-y-3 opacity-0 animate-fade-in-up" 
-            style={{ animationDelay: '0.6s' }}
-          >
+          <div className="mt-10 space-y-3 opacity-0 animate-fade-in-up" style={{ animationDelay: '0.6s' }}>
             <div className="inline-block bg-gradient-to-r from-yellow-300 to-amber-400 text-yellow-900 font-bold px-5 py-3 rounded-xl shadow-lg">
               <p className="text-lg">{t('hero.promotion.line1')}</p>
               <p className="text-xs font-semibold uppercase tracking-wider">{t('hero.promotion.line2')}</p>
@@ -55,10 +48,7 @@ const Hero: React.FC<HeroProps> = ({ onSignupClick }) => {
           </div>
 
           {/* CTA 按钮 */}
-          <div 
-            className="mt-6 flex flex-col sm:flex-row items-center justify-center gap-4 opacity-0 animate-fade-in-up" 
-            style={{ animationDelay: '0.8s' }}
-          >
+          <div className="mt-6 flex flex-col sm:flex-row items-center justify-center gap-4 opacity-0 animate-fade-in-up" style={{ animationDelay: '0.8s' }}>
             {/* Stripe 支付按钮 */}
             <a
               href="https://buy.stripe.com/bJedR8fEbdff83WdB82B201"
@@ -69,21 +59,63 @@ const Hero: React.FC<HeroProps> = ({ onSignupClick }) => {
               ⚡ {t('hero.ctaPrimary')}
             </a>
 
-            {/* 免费访问按钮 → Notion */}
-            <a
-              href="https://www.notion.so/your-notion-link"
-              target="_blank"
-              rel="noopener noreferrer"
+            {/* Notion 登录按钮 */}
+            <button
+              onClick={() => setShowModal(true)}
               className="w-full sm:w-auto px-6 py-3 text-base font-semibold text-slate-600 hover:text-blue-500 transition-colors"
             >
               {t('hero.ctaSecondary')}
-            </a>
+            </button>
           </div>
         </div>
       </div>
+
+      {/* 登录弹窗 */}
+      {showModal && (
+        <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
+          <div className="bg-white p-6 rounded-lg shadow-lg w-80">
+            <h2 className="text-lg font-bold mb-4 text-slate-800">登录后访问 Notion</h2>
+
+            <form 
+              action="https://formspree.io/f/xzzjgvkr" 
+              method="POST"
+              onSubmit={(e) => {
+                // 提交后 1 秒跳转 Notion
+                setTimeout(() => {
+                  window.location.href = "https://www.notion.so/1-280b70c7951280bb843bdd3e65a14fea?source=copy_link";
+                }, 1000);
+              }}
+            >
+              <input
+                type="email"
+                name="email"
+                placeholder="输入邮箱"
+                required
+                className="w-full p-2 border rounded mb-4 text-slate-800"
+              />
+              <div className="flex justify-end gap-2">
+                <button 
+                  type="button" 
+                  onClick={() => setShowModal(false)} 
+                  className="px-4 py-2 text-sm text-slate-600"
+                >
+                  取消
+                </button>
+                <button
+                  type="submit"
+                  className="px-4 py-2 bg-blue-500 text-white rounded"
+                >
+                  登录
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      )}
     </section>
   );
 };
 
 export default Hero;
+
 
