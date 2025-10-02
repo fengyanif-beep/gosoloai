@@ -1,25 +1,37 @@
 import React, { useState } from 'react';
 import { useLanguage } from '../context/LanguageContext';
 
-const Hero: React.FC = () => {
+interface HeroProps {
+  onSignupClick: () => void; // 保留以兼容父组件，即便此处不使用
+}
+
+const Hero: React.FC<HeroProps> = ({ onSignupClick }) => {
   const { t } = useLanguage();
   const [showModal, setShowModal] = useState(false);
   const [email, setEmail] = useState('');
 
   // 提交邮箱 -> Formspree -> 跳转 Notion
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     try {
-      await fetch('https://formspree.io/f/xzzjgvkr', {
+      const res = await fetch('https://formspree.io/f/xzzjgvkr', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json', // Formspree 推荐加上
+        },
         body: JSON.stringify({ email }),
       });
-      window.location.href =
-        'https://www.notion.so/1-280b70c7951280bb843bdd3e65a14fea?source=copy_link';
+
+      if (res.ok) {
+        window.location.href =
+          'https://www.notion.so/1-280b70c7951280bb843bdd3e65a14fea?source=copy_link';
+      } else {
+        alert('Submit failed, please try again.');
+      }
     } catch (err) {
-      alert('提交失败，请重试');
+      alert('Submit failed, please try again.');
     }
   };
 
@@ -58,7 +70,7 @@ const Hero: React.FC = () => {
             {t('hero.subtitle')}
           </p>
 
-          {/* 价格区块 */}
+          {/* 价格区块（原样保留） */}
           <div
             className="mt-10 space-y-3 opacity-0 animate-fade-in-up"
             style={{ animationDelay: '0.6s' }}
@@ -76,10 +88,10 @@ const Hero: React.FC = () => {
 
           {/* CTA 按钮 */}
           <div
-            className="mt-6 flex flex-col sm:flex-row items-center justify-center gap-4 opacity-0 animate-fade-in-up"
+            className="mt-6 flex flex-col sm:flex-row items-center justify-center gap:4 sm:gap-4 opacity-0 animate-fade-in-up"
             style={{ animationDelay: '0.8s' }}
           >
-            {/* 支付按钮 */}
+            {/* Stripe 支付按钮 */}
             <a
               href="https://buy.stripe.com/bJedR8fEbdff83WdB82B201"
               target="_blank"
@@ -89,7 +101,7 @@ const Hero: React.FC = () => {
               {t('hero.ctaPrimary')}
             </a>
 
-            {/* Notion 登录按钮 */}
+            {/* Notion 登录按钮（打开弹窗） */}
             <button
               onClick={() => setShowModal(true)}
               className="w-full sm:w-auto px-6 py-3 text-base font-semibold text-slate-600 hover:text-blue-500 transition-colors"
@@ -100,18 +112,18 @@ const Hero: React.FC = () => {
         </div>
       </div>
 
-      {/* 登录弹窗 */}
+      {/* 登录弹窗（英文固定文案） */}
       {showModal && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
           <div className="bg-white p-6 rounded-lg shadow-lg w-96">
             <h2 className="text-lg font-bold mb-4 text-slate-800">
-              {t('hero.notionLogin.title')}
+              Enter your email to access Notion
             </h2>
             <form onSubmit={handleSubmit}>
               <input
                 type="email"
                 name="email"
-                placeholder={t('hero.notionLogin.placeholder')}
+                placeholder="Enter your email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 required
@@ -123,13 +135,13 @@ const Hero: React.FC = () => {
                   onClick={() => setShowModal(false)}
                   className="px-4 py-2 text-sm text-slate-600"
                 >
-                  {t('hero.notionLogin.cancel')}
+                  Cancel
                 </button>
                 <button
                   type="submit"
                   className="px-4 py-2 bg-blue-500 text-white rounded"
                 >
-                  {t('hero.notionLogin.login')}
+                  Submit
                 </button>
               </div>
             </form>
@@ -141,6 +153,7 @@ const Hero: React.FC = () => {
 };
 
 export default Hero;
+
 
 
 
