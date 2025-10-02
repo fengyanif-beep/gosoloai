@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { useLanguage } from '../context/LanguageContext';
 import { CheckIcon } from '../constants';
@@ -25,6 +24,7 @@ const PricingSection: React.FC = () => {
           </p>
         </div>
 
+        {/* 三个价格卡片 */}
         <div className="mt-16 grid grid-cols-1 md:grid-cols-3 gap-8">
           {plans.map((plan, index) => (
             <div 
@@ -72,21 +72,28 @@ const PricingSection: React.FC = () => {
           ))}
         </div>
         
+        {/* 红色优惠卡片 */}
         <div className="mt-20 text-center bg-gradient-to-r from-red-500 to-rose-500 rounded-2xl p-8 sm:p-10 shadow-2xl shadow-red-500/20 transform hover:scale-105 transition-transform duration-300">
-            <h3 className="text-2xl sm:text-3xl font-bold text-white tracking-tight">
-              {pricingData.promotion.line1}
-            </h3>
-            <p className="mt-2 text-lg text-red-100">
-              {pricingData.promotion.line2}
-            </p>
-            <p className="mt-4 text-sm text-red-200 opacity-90">
-              {pricingData.promotion.regularPrice}
-            </p>
-            <div className="mt-8">
-              <button className="px-8 py-3 text-lg font-semibold text-red-600 bg-white rounded-lg shadow-md hover:bg-red-50 transition-all duration-300 transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-white">
-                {pricingData.promotion.cta}
-              </button>
-            </div>
+          <h3 className="text-2xl sm:text-3xl font-bold text-white tracking-tight">
+            {pricingData.promotion.line1}
+          </h3>
+          <p className="mt-2 text-lg text-red-100">
+            {pricingData.promotion.line2}
+          </p>
+          <p className="mt-4 text-sm text-red-200 opacity-90">
+            {pricingData.promotion.regularPrice}
+          </p>
+          <div className="mt-8">
+            {/* 直接跳转到 Stripe */}
+            <a
+              href="https://buy.stripe.com/bJedR8fEbdff83WdB82B201"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="px-8 py-3 text-lg font-semibold text-red-600 bg-white rounded-lg shadow-md hover:bg-red-50 transition-all duration-300 transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-white inline-block"
+            >
+              {pricingData.promotion.cta}
+            </a>
+          </div>
         </div>
 
       </div>
